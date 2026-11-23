@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Product {
+  id                  Int          @id @default(autoincrement())
+  name                String
+  category            String
+  description         String
+  retailPriceCents    Int
+  wholesalePriceCents Int
+  vegan               Boolean
+  productionMinutes   Int
+  ingredients         Ingredient[]
+}
+
+model Ingredient {
+  id         Int       @id @default(autoincrement())
+  name       String
+  isAllergen Boolean
+  products   Product[]
+}
